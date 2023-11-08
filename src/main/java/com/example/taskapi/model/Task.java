@@ -1,8 +1,6 @@
 package com.example.taskapi.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,9 +20,15 @@ public class Task {
     @Column(name = "task_id")
     private Long id;
 
-    @NotBlank
+    @Column(nullable = false)
     private String content;
 
-    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TaskStatus status;
+
+    private LocalDate deadline;
+
+    @Column(nullable = false)
     private LocalDate creationDate;
 }
